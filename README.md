@@ -1,5 +1,5 @@
 # 单节点部署
-* pv-pvc.yml
+## pv-pvc.yml
 ```yml
 ---
 apiVersion: v1
@@ -32,7 +32,7 @@ spec:
     matchLabels:
       type: "es-pv"  
 ``` 
-* deployment.yml
+## deployment.yml
 ```yml
 kind: Deployment
 apiVersion: apps/v1beta2
@@ -134,7 +134,7 @@ spec:
 
 # 多节点部署
 
-* 3个master pvc
+## 3个master pvc
 ```yml
 helm install ./pv-pvc \
 --set pv.name=data-elasticsearch-master-0 \
@@ -155,7 +155,7 @@ helm install ./pv-pvc \
 --name es-master-pvc-2
 ```
 
-* 2个data pvc
+## 2个data pvc
 
 ```
 helm install ./pv-pvc \

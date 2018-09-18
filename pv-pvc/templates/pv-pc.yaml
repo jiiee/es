@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    type: "es-pv" 
+  name: "{{ .Values.pv.name }}"
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 3Gi
+  nfs:
+    path: "{{ .Values.nfs.path }}"
+    server: "{{ .Values.nfs.server }}"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ .Values.pvc.name }}"
+  namespace: "{{ .Values.pv.namespace }}"
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  selector:
+    matchLabels:
+      type: "es-pv"  

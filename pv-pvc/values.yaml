@@ -1,0 +1,8 @@
+pv:
+  name: pv-name
+nfs:
+  path: /hzero/elasticsearch-01
+  server: 192.168.1.13
+pvc:
+  name: pvc-name
+  namespace: hzero-devops

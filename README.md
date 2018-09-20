@@ -1,4 +1,4 @@
-# 单节点部署
+# elasticsearch单节点部署
 ## pv-pvc.yml
 ```yml
 ---
@@ -132,7 +132,7 @@ spec:
     role: master
 ```
 
-# 多节点部署
+# elasticsearch多节点部署
 
 ## 3个master pvc
 ```bash

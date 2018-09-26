@@ -1,7 +1,17 @@
+# table
+<!-- MarkdownTOC autolink="true" -->
+
+- [elasticsearch单节点部署](#elasticsearch%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2)
+- [elasticsearch多节点部署](#elasticsearch%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2)
+- [部署kibana](#%E9%83%A8%E7%BD%B2kibana)
+- [部署logstash](#%E9%83%A8%E7%BD%B2logstash)
+- [部署filebeat](#%E9%83%A8%E7%BD%B2filebeat)
+
+<!-- /MarkdownTOC -->
+
 # elasticsearch单节点部署
-## pv-pvc.yml
+* pv-pvc.yml
 ```yml
----
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -32,7 +42,7 @@ spec:
     matchLabels:
       type: "es-pv"  
 ``` 
-## deployment.yml
+* deployment.yml
 ```yml
 kind: Deployment
 apiVersion: apps/v1beta2
@@ -134,7 +144,7 @@ spec:
 
 # elasticsearch多节点部署
 
-## 3个master pvc
+* 3个master pvc
 ```bash
 helm install ./pv-pvc \
 --set pv.name=data-elasticsearch-master-0 \
@@ -155,7 +165,7 @@ helm install ./pv-pvc \
 --name es-master-pvc-2
 ```
 
-## 2个data pvc
+* 2个data pvc
 
 ```bash
 helm install ./pv-pvc \
@@ -182,7 +192,7 @@ helm install stable/kibana --namespace hzero-devops \
 --set env.ELASTICSEARCH_URL=http://elasticsearch-client:9200 --name kibana
 ```
 # 部署logstash
-## pvc
+* pvc
 ```bash
 helm install ./pv-pvc \
 --set pv.name=data-logstash-0 \
@@ -190,6 +200,7 @@ helm install ./pv-pvc \
 --set pvc.name=data-logstash-0 \
 --name logstash-pvc-0
 ```
+* logstash
 ```bash
 helm install incubator/logstash --namespace hzero-devops --name logstash \
 --set elasticsearch.host=elasticsearch-client
